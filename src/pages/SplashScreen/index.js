@@ -1,9 +1,15 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect} from 'react';
 import {Text, View, Dimensions} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Logo} from '../../assets';
 
-const SplashScreen = () => {
+const SplashScreen = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('SignIn');
+    }, 2000);
+  }, []);
   const entireScreenWidth = Dimensions.get('window').width;
   EStyleSheet.build({$rem: entireScreenWidth / 320});
   return (

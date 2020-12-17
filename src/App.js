@@ -1,11 +1,11 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {SplashScreen, SignIn} from './pages';
+import Router from './router';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <SignIn />
+      <Router />
     </NavigationContainer>
   );
 };
