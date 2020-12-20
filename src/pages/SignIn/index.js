@@ -3,6 +3,9 @@ import {StyleSheet, View} from 'react-native';
 import {Header, TextInput, Button, Gap} from '../../components';
 
 const SignIn = ({navigation}) => {
+  const onHandeSignIn = () => {
+    navigation.replace('SignUpAddress');
+  };
   const onHandleSignUp = () => {
     navigation.navigate('SignUp');
   };
@@ -14,7 +17,7 @@ const SignIn = ({navigation}) => {
         <Gap height={16} />
         <TextInput label="Password" placeholder="Type your password" />
         <Gap height={24} />
-        <Button title="Sign In" />
+        <Button title="Sign In" onPress={onHandeSignIn} />
         <Gap height={12} />
         <Button
           title="Create New Account"

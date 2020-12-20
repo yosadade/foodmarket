@@ -2,7 +2,10 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Header, Gap, Button, TextInput} from '../../components';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
+  const onHandleContinue = () => {
+    navigation.replace('SignUpAddress');
+  };
   return (
     <View style={styles.page}>
       <Header title="Sign Up" subTitle="Register and out" onBack />
@@ -20,7 +23,7 @@ const SignUp = () => {
         <Gap height={16} />
         <TextInput label="Password" placeholder="Type your password" />
         <Gap height={24} />
-        <Button title="Continue" />
+        <Button title="Continue" onPress={onHandleContinue} />
       </View>
     </View>
   );

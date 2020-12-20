@@ -25,7 +25,7 @@ export default TextInput;
 const styles = EStyleSheet.create({
   container: {},
   label: {
-    fontSize: '18rem',
+    fontSize: 18,
     fontFamily: 'Poppins-Regular',
     color: '#020202',
   },
