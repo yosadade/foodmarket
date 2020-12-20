@@ -4,8 +4,8 @@ import {ILSuccessSignUp} from '../../assets';
 import {Button} from '../../components';
 
 const SuccessSignUp = ({navigation}) => {
-  const onHandleFindFoods = () => {
-    navigation.replace('Home');
+  const onHandleButton = () => {
+    navigation.replace('MainApp');
   };
   return (
     <View style={styles.page}>
@@ -14,7 +14,7 @@ const SuccessSignUp = ({navigation}) => {
       <Text style={styles.subTitle}>Now you are able to orde</Text>
       <Text style={styles.subTitle}>some foods as a self-reward</Text>
       <View style={styles.btnContainer}>
-        <Button title="Find Foods" color="#020202" onPress={() => {}} />
+        <Button title="Find Foods" color="#020202" onPress={onHandleButton} />
       </View>
     </View>
   );
