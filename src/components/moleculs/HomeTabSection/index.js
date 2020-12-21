@@ -39,26 +39,35 @@ const renderTabBar = (props) => (
 const NewTaste = () => {
   const navigation = useNavigation();
   return (
-    <View>
+    <View
+      style={{
+        paddingTop: 8,
+        paddingHorizontal: 24,
+        backgroundColor: '#FFFFFF',
+      }}>
       <ItemListFood
+        rating
         image={FoodDummy6}
         name="Soup Bumil"
         price="284.000"
         onPress={() => navigation.navigate('FoodDetail')}
       />
       <ItemListFood
+        rating
         image={FoodDummy7}
         name="Chicken"
         price="284.000"
         onPress={() => navigation.navigate('FoodDetail')}
       />
       <ItemListFood
+        rating
         image={FoodDummy8}
         name="Shrimp"
         price="284.000"
         onPress={() => navigation.navigate('FoodDetail')}
       />
       <ItemListFood
+        rating
         image={FoodDummy6}
         name="Soup Bumil"
         price="284.000"
@@ -71,26 +80,35 @@ const NewTaste = () => {
 const Popular = () => {
   const navigation = useNavigation();
   return (
-    <View>
+    <View
+      style={{
+        paddingTop: 8,
+        paddingHorizontal: 24,
+        backgroundColor: '#FFFFFF',
+      }}>
       <ItemListFood
+        rating
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy8}
         name="Shrimp"
         price="284.000"
       />
       <ItemListFood
+        rating
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy6}
         name="Soup Bumil"
         price="284.000"
       />
       <ItemListFood
+        rating
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy7}
         name="Chicken"
         price="284.000"
       />
       <ItemListFood
+        rating
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy6}
         name="Soup Bumil"
@@ -102,26 +120,35 @@ const Popular = () => {
 const Recomended = () => {
   const navigation = useNavigation();
   return (
-    <View>
+    <View
+      style={{
+        paddingTop: 8,
+        paddingHorizontal: 24,
+        backgroundColor: '#FFFFFF',
+      }}>
       <ItemListFood
+        rating
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy8}
         name="Shrimp"
         price="284.000"
       />
       <ItemListFood
+        rating
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy6}
         name="Soup Bumil"
         price="284.000"
       />
       <ItemListFood
+        rating
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy7}
         name="Chicken"
         price="284.000"
       />
       <ItemListFood
+        rating
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy6}
         name="Soup Bumil"

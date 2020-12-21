@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Rating from '../Rating';
 
-const ItemListFood = ({image, name, price, onPress}) => {
+const ItemListFood = ({image, name, price, onPress, item, rating}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -15,7 +15,8 @@ const ItemListFood = ({image, name, price, onPress}) => {
           <Text style={styles.subTitle}>IDR {price}</Text>
         </View>
       </View>
-      <Rating />
+      {item && <Text style={styles.subTitle}>{item} items</Text>}
+      {rating && <Rating />}
     </TouchableOpacity>
   );
 };
@@ -28,11 +29,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 16,
+    paddingVertical: 8,
   },
   content: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   image: {
     width: 60,

@@ -23,6 +23,10 @@ const FoodDetail = ({navigation}) => {
   const onHandleCountPlus = () => {
     setCount(count + 1);
   };
+
+  const onHandleOrderNow = () => {
+    navigation.navigate('OrderSummary');
+  };
   return (
     <View style={styles.page}>
       <ImageBackground source={FoodDummy9} style={styles.cover}>
@@ -61,7 +65,7 @@ const FoodDetail = ({navigation}) => {
             <Text>IDR 720.000</Text>
           </View>
           <View style={styles.button}>
-            <Button title="Order Now" />
+            <Button title="Order Now" onPress={onHandleOrderNow} />
           </View>
         </View>
       </View>
