@@ -4,10 +4,20 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Header, ItemListFood, ItemValue, Button} from '../../components';
 import {FoodDummy1} from '../../assets';
 
-const OrderSummary = () => {
+const OrderSummary = ({navigation}) => {
+  const onHandleCheckout = () => {
+    navigation.replace('OrderSuccess');
+  };
+  const onHandleBack = () => {
+    navigation.goBack();
+  };
   return (
     <View style={styles.page}>
-      <Header title="Payment" subTitle="You deserve better meal" />
+      <Header
+        title="Payment"
+        subTitle="You deserve better meal"
+        onBack={() => {}}
+      />
       <View style={styles.content}>
         <Text style={styles.label}>Item Order</Text>
         <ItemListFood
@@ -20,7 +30,11 @@ const OrderSummary = () => {
         <ItemValue label="Cherry Healthy" value="IDR 1.839.000" />
         <ItemValue label="Drive" value="IDR 50.000" />
         <ItemValue label="Tax 10%" value="IDR 183.900" />
-        <ItemValue label="Total Price" value="IDR 2.000.000" />
+        <ItemValue
+          label="Total Price"
+          value="IDR 2.000.000"
+          valueColor="#1ABC9C"
+        />
       </View>
       <View style={styles.content}>
         <Text style={styles.label}>Deliver To:</Text>
@@ -31,7 +45,7 @@ const OrderSummary = () => {
         <ItemValue label="City" value="Yogyakarta" />
       </View>
       <View style={styles.button}>
-        <Button title="Checkout Now" />
+        <Button title="Checkout Now" onPress={onHandleCheckout} />
       </View>
     </View>
   );
