@@ -2,11 +2,12 @@ import React from 'react';
 import {Text, View, TextInput as TextInputRN} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const TextInput = ({label, placeholder}) => {
+const TextInput = ({label, placeholder, ...restProps}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
       <TextInputRN
+        {...restProps}
         placeholder={placeholder}
         style={{
           borderWidth: 1,

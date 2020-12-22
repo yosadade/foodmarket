@@ -10,6 +10,7 @@ import ICStarOn from './ic_star.svg';
 import ICStarOff from './ic_star_normal.svg';
 import ICPlus from './ic_plus.svg';
 import ICMin from './ic_min.svg';
+import ICRight from './arrow_right.svg';
 
 export {
   ICBack,
@@ -24,4 +25,5 @@ export {
   ICStarOff,
   ICPlus,
   ICMin,
+  ICRight,
 };

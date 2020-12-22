@@ -44,11 +44,7 @@ const OrderDetail = () => {
         </View>
         <View style={styles.content}>
           <Text style={styles.label}>Order Status</Text>
-          <ItemValue
-            label="Total Price"
-            value="IDR 2.000.000"
-            valueColor="#1ABC9C"
-          />
+          <ItemValue label="#FM209391" value="PAID" valueColor="#1ABC9C" />
         </View>
         <View style={styles.button}>
           <Button
