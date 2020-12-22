@@ -3,9 +3,13 @@ import {StyleSheet, Text, View} from 'react-native';
 import {ILSuccessOrder} from '../../assets';
 import {Button, Gap} from '../../components';
 
-const SuccessOrder = ({}) => {
-  const onHandleOtherFoods = () => {};
-  const onHandleMyOrder = () => {};
+const SuccessOrder = ({navigation}) => {
+  const onHandleOtherFoods = () => {
+    navigation.replace('MainApp');
+  };
+  const onHandleMyOrder = () => {
+    navigation.replace('Order');
+  };
   return (
     <View style={styles.page}>
       <ILSuccessOrder />
@@ -41,6 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#FFFFFF',
   },
   title: {
     fontSize: 20,

@@ -46,28 +46,28 @@ const NewTaste = () => {
         backgroundColor: '#FFFFFF',
       }}>
       <ItemListFood
-        rating
+        type="product"
         image={FoodDummy6}
         name="Soup Bumil"
         price="284.000"
         onPress={() => navigation.navigate('FoodDetail')}
       />
       <ItemListFood
-        rating
+        type="product"
         image={FoodDummy7}
         name="Chicken"
         price="284.000"
         onPress={() => navigation.navigate('FoodDetail')}
       />
       <ItemListFood
-        rating
+        type="product"
         image={FoodDummy8}
         name="Shrimp"
         price="284.000"
         onPress={() => navigation.navigate('FoodDetail')}
       />
       <ItemListFood
-        rating
+        type="product"
         image={FoodDummy6}
         name="Soup Bumil"
         price="284.000"
@@ -87,28 +87,28 @@ const Popular = () => {
         backgroundColor: '#FFFFFF',
       }}>
       <ItemListFood
-        rating
+        type="product"
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy8}
         name="Shrimp"
         price="284.000"
       />
       <ItemListFood
-        rating
+        type="product"
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy6}
         name="Soup Bumil"
         price="284.000"
       />
       <ItemListFood
-        rating
+        type="product"
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy7}
         name="Chicken"
         price="284.000"
       />
       <ItemListFood
-        rating
+        type="product"
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy6}
         name="Soup Bumil"
@@ -127,28 +127,28 @@ const Recomended = () => {
         backgroundColor: '#FFFFFF',
       }}>
       <ItemListFood
-        rating
+        type="product"
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy8}
         name="Shrimp"
         price="284.000"
       />
       <ItemListFood
-        rating
+        type="product"
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy6}
         name="Soup Bumil"
         price="284.000"
       />
       <ItemListFood
-        rating
+        type="product"
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy7}
         name="Chicken"
         price="284.000"
       />
       <ItemListFood
-        rating
+        type="product"
         onPress={() => navigation.navigate('FoodDetail')}
         image={FoodDummy6}
         name="Soup Bumil"

@@ -4,13 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Header, ItemListFood, ItemValue, Button} from '../../components';
 import {FoodDummy1} from '../../assets';
 
-const OrderSummary = ({navigation}) => {
-  const onHandleCheckout = () => {
-    navigation.replace('SuccessOrder');
-  };
-  const onHandleBack = () => {
-    navigation.goBack();
-  };
+const OrderDetail = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header
@@ -46,13 +40,18 @@ const OrderSummary = ({navigation}) => {
         <ItemValue label="City" value="Yogyakarta" />
       </View>
       <View style={styles.button}>
-        <Button title="Checkout Now" onPress={onHandleCheckout} />
+        <Button
+          title="Cancel My Order"
+          onPress={() => {}}
+          bgColor="#D9435E"
+          color="#FFFFFF"
+        />
       </View>
     </View>
   );
 };
 
-export default OrderSummary;
+export default OrderDetail;
 
 const styles = StyleSheet.create({
   page: {},
