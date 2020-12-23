@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {Header, Gap, Button, TextInput} from '../../components';

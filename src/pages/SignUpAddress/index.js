@@ -1,8 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Header, Gap, Button, TextInput, Select} from '../../components';
 import {useForm} from '../../utils';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
+import Axios from 'axios';
 
 const SignUp = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -11,7 +13,6 @@ const SignUp = ({navigation}) => {
     houseNumber: '',
     city: 'Jakarta',
   });
-  const dispatch = useDispatch();
   const registerReducer = useSelector((state) => state.registerReducer);
 
   const onSubmit = () => {
@@ -20,10 +21,13 @@ const SignUp = ({navigation}) => {
       ...form,
       ...registerReducer,
     };
-    // dispatch({type: 'SET_REGISTER', value: form});
     console.log('data register', data);
-    console.log('data register', registerReducer);
-    // navigation.replace('SuccessSignUp');
+    Axios.post('http://foodmarket-backend.buildwithangga.id/api/register', data)
+      .then((res) => {
+        console.log('data success', res.data);
+        navigation.replace('SuccessSignUp');
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
