@@ -15,6 +15,7 @@ const SignUpAddress = ({navigation}) => {
   });
   const dispatch = useDispatch();
   const registerReducer = useSelector((state) => state.registerReducer);
+  const photoReducer = useSelector((state) => state.photoReducer);
 
   const onSubmit = () => {
     console.log(form);
@@ -27,6 +28,26 @@ const SignUpAddress = ({navigation}) => {
     Axios.post('http://foodmarket-backend.buildwithangga.id/api/register', data)
       .then((res) => {
         console.log('data success', res.data);
+        if (photoReducer.isUploadPhoto) {
+          const photoForUpload = new FormData();
+          photoForUpload.append('file', photoReducer);
+          Axios.post(
+            'http://foodmarket-backend.buildwithangga.id/api/user/photo',
+            photoForUpload,
+            {
+              headers: {
+                Authorization: `${res.data.data.token_type} ${res.data.data.access_token}`,
+                'Content-Type': 'multipart/form-data',
+              },
+            },
+          )
+            .then((resUpload) => {
+              console.log('succes upload', resUpload);
+            })
+            .catch((err) => {
+              showMessage('Upload photo tidak berhasil');
+            });
+        }
         dispatch({type: 'SET_LOADING', value: false});
         showMessage('Register Success', 'success');
         navigation.replace('SuccessSignUp');

@@ -9,6 +9,13 @@ const initialStateRegister = {
   //   phoneNumber: '',
 };
 
+const initialStatePhoto = {
+  uri: '',
+  type: '',
+  name: '',
+  isUploadPhoto: false,
+};
+
 export const registerReducer = (state = initialStateRegister, action) => {
   if (action.type === 'SET_REGISTER') {
     return {
@@ -26,6 +33,24 @@ export const registerReducer = (state = initialStateRegister, action) => {
       city: action.value.city,
       houseNumber: action.value.houseNumber,
       phoneNumber: action.value.phoneNumber,
+    };
+  }
+  return state;
+};
+
+export const photoReducer = (state = initialStatePhoto, action) => {
+  if (action.type === 'SET_PHOTO') {
+    return {
+      ...state,
+      uri: action.value.uri,
+      type: action.value.type,
+      name: action.value.name,
+    };
+  }
+  if (action.type === 'SET_UPLOAD_STATUS') {
+    return {
+      ...state,
+      isUploadPhoto: action.value.isUploadPhoto,
     };
   }
   return state;
