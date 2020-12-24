@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {
   ProfileDummy,
   FoodDummy1,
@@ -8,12 +8,22 @@ import {
   FoodDummy5,
 } from '../../assets/dummy';
 import {FoodCard, Gap, HomeTabSection, HomeProfile} from '../../components';
+import {getData} from '../../utils';
 
 const Home = () => {
+  const [photo, setPhoto] = useState(ProfileDummy);
+  useEffect(() => {
+    getData('userProfile')
+      .then((res) => {
+        console.log(res.profile_photo_url);
+        setPhoto({uri: res.profile_photo_url});
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
-        <HomeProfile image={ProfileDummy} />
+        <HomeProfile image={photo} />
 
         <View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
