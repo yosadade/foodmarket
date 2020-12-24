@@ -2,17 +2,18 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Header, Gap, Button, TextInput, Select} from '../../components';
-import {useForm} from '../../utils';
-import {useSelector} from 'react-redux';
+import {useForm, showMessage} from '../../utils';
+import {useSelector, useDispatch} from 'react-redux';
 import Axios from 'axios';
 
-const SignUp = ({navigation}) => {
+const SignUpAddress = ({navigation}) => {
   const [form, setForm] = useForm({
     phoneNumber: '',
     address: '',
     houseNumber: '',
     city: 'Jakarta',
   });
+  const dispatch = useDispatch();
   const registerReducer = useSelector((state) => state.registerReducer);
 
   const onSubmit = () => {
@@ -22,12 +23,19 @@ const SignUp = ({navigation}) => {
       ...registerReducer,
     };
     console.log('data register', data);
+    dispatch({type: 'SET_LOADING', value: true});
     Axios.post('http://foodmarket-backend.buildwithangga.id/api/register', data)
       .then((res) => {
         console.log('data success', res.data);
+        dispatch({type: 'SET_LOADING', value: false});
+        showMessage('Register Success', 'success');
         navigation.replace('SuccessSignUp');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        dispatch({type: 'SET_LOADING', value: false});
+        console.log('Sign Up Error', err.response.data.message);
+        showMessage(err.response.data.message);
+      });
   };
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
@@ -68,7 +76,7 @@ const SignUp = ({navigation}) => {
   );
 };
 
-export default SignUp;
+export default SignUpAddress;
 
 const styles = StyleSheet.create({
   page: {
