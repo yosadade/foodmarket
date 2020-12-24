@@ -2,9 +2,9 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Header, Gap, Button, TextInput, Select} from '../../components';
-import {useForm, showMessage} from '../../utils';
+import {useForm} from '../../utils';
 import {useSelector, useDispatch} from 'react-redux';
-import Axios from 'axios';
+import {setLoading, signUpAction} from '../../redux/action';
 
 const SignUpAddress = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -24,39 +24,8 @@ const SignUpAddress = ({navigation}) => {
       ...registerReducer,
     };
     console.log('data register', data);
-    dispatch({type: 'SET_LOADING', value: true});
-    Axios.post('http://foodmarket-backend.buildwithangga.id/api/register', data)
-      .then((res) => {
-        console.log('data success', res.data);
-        if (photoReducer.isUploadPhoto) {
-          const photoForUpload = new FormData();
-          photoForUpload.append('file', photoReducer);
-          Axios.post(
-            'http://foodmarket-backend.buildwithangga.id/api/user/photo',
-            photoForUpload,
-            {
-              headers: {
-                Authorization: `${res.data.data.token_type} ${res.data.data.access_token}`,
-                'Content-Type': 'multipart/form-data',
-              },
-            },
-          )
-            .then((resUpload) => {
-              console.log('succes upload', resUpload);
-            })
-            .catch((err) => {
-              showMessage('Upload photo tidak berhasil');
-            });
-        }
-        dispatch({type: 'SET_LOADING', value: false});
-        showMessage('Register Success', 'success');
-        navigation.replace('SuccessSignUp');
-      })
-      .catch((err) => {
-        dispatch({type: 'SET_LOADING', value: false});
-        console.log('Sign Up Error', err.response.data.message);
-        showMessage(err.response.data.message);
-      });
+    dispatch(setLoading(true));
+    dispatch(signUpAction(data, photoReducer, navigation));
   };
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
