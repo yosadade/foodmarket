@@ -9,17 +9,23 @@ import {
 } from '../../assets/dummy';
 import {FoodCard, Gap, HomeTabSection, HomeProfile} from '../../components';
 import {getData} from '../../utils';
+import {useDispatch, useSelector} from 'react-redux';
+import {getFoodData} from '../../redux/action';
 
 const Home = () => {
   const [photo, setPhoto] = useState(ProfileDummy);
+
+  const dispatch = useDispatch();
+  const {food} = useSelector((state) => state.homeReducer);
   useEffect(() => {
+    dispatch(getFoodData());
     getData('userProfile')
       .then((res) => {
-        console.log(res.profile_photo_url);
+        // console.log(res.profile_photo_url);
         setPhoto({uri: res.profile_photo_url});
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [dispatch]);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
@@ -29,10 +35,19 @@ const Home = () => {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.foodCardContainer}>
               <Gap width={24} />
-              <FoodCard image={FoodDummy1} name="Cherry Healthy" />
+              {food.map((itemFood) => {
+                return (
+                  <FoodCard
+                    image={{uri: itemFood.picturePath}}
+                    name={itemFood.name}
+                    rating={itemFood.rate}
+                  />
+                );
+              })}
+              {/* <FoodCard image={FoodDummy1} name="Cherry Healthy" />
               <FoodCard image={FoodDummy5} name="Cherry Healthy" />
               <FoodCard image={FoodDummy3} name="Cherry Healthy" />
-              <FoodCard image={FoodDummy4} name="Cherry Healthy" />
+              <FoodCard image={FoodDummy4} name="Cherry Healthy" /> */}
             </View>
           </ScrollView>
         </View>
