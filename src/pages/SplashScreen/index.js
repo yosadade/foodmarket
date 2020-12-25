@@ -3,11 +3,19 @@ import React, {useEffect} from 'react';
 import {Text, View, Dimensions} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Logo} from '../../assets';
+import {getData} from '../../utils';
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('SignIn');
+      getData('token').then((res) => {
+        console.log('token :', res);
+        if (res) {
+          navigation.reset({index: 0, routes: [{name: 'MainApp'}]});
+        } else {
+          navigation.replace('SignIn');
+        }
+      });
     }, 2000);
   }, []);
   const entireScreenWidth = Dimensions.get('window').width;

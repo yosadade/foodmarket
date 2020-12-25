@@ -1,17 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {ProfileDummy} from '../../assets';
 import {ProfileTabSection} from '../../components';
+import {getData} from '../../utils';
 
 const Profie = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [photo, setPhoto] = useState('');
+  useEffect(() => {
+    getData('userProfile')
+      .then((res) => {
+        console.log(res);
+        setPhoto({uri: res.profile_photo_url});
+        setName(res.name);
+        setEmail(res.email);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
   return (
     <View style={styles.page}>
       <View style={styles.photo}>
         <View style={styles.borderPhoto}>
-          <Image source={ProfileDummy} style={styles.photoContainer} />
+          <Image source={photo} style={styles.photoContainer} />
         </View>
-        <Text style={styles.name}>Yosada Dede</Text>
-        <Text style={styles.email}>yosadadede.qodr@gmail.com</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.email}>{email}</Text>
       </View>
       <ProfileTabSection />
     </View>

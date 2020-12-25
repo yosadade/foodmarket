@@ -5,7 +5,7 @@ import {Button} from '../../components';
 
 const SuccessSignUp = ({navigation}) => {
   const onHandleButton = () => {
-    navigation.replace('MainApp');
+    navigation.reset({index: 0, routes: [{name: 'MainApp'}]});
   };
   return (
     <View style={styles.page}>

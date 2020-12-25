@@ -59,7 +59,11 @@ const SignUp = ({navigation}) => {
       contentContainerStyle={{flexGrow: 1}}
       showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
-        <Header title="Sign Up" subTitle="Register and out" onBack />
+        <Header
+          title="Sign Up"
+          subTitle="Register and out"
+          onBack={() => navigation.goBack()}
+        />
         <View style={styles.container}>
           <View style={styles.photo}>
             <TouchableOpacity onPress={addPhoto}>

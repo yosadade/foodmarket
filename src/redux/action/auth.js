@@ -14,7 +14,6 @@ export const signUpAction = (dataRegister, photoReducer, navigation) => (
       const profile = res.data.data.user;
       const token = `${res.data.data.token_type} ${res.data.data.access_token}`;
       // data user
-      storeData('userProfile', profile);
       // data token
       storeData('token', {
         value: token,
@@ -22,21 +21,49 @@ export const signUpAction = (dataRegister, photoReducer, navigation) => (
       if (photoReducer.isUploadPhoto) {
         const photoForUpload = new FormData();
         photoForUpload.append('file', photoReducer);
-        Axios.post(`${API_HOST}/photo`, photoForUpload, {
+        Axios.post(`${API_HOST.uri}/photo`, photoForUpload, {
           headers: {
             Authorization: token,
             'Content-Type': 'multipart/form-data',
           },
-        }).catch(() => {
-          showMessage('Upload photo tidak berhasil');
-        });
+        })
+          .then((resUpload) => {
+            profile.profile_photo_url = `http://foodmarket-backend.buildwithangga.id/storage/${resUpload.data.data[0]}`;
+            storeData('userProfile', profile);
+            navigation.reset({index: 0, routes: [{name: 'SuccessSignUp'}]});
+          })
+          .catch(() => {
+            showMessage('Upload photo tidak berhasil');
+            navigation.reset({index: 0, routes: [{name: 'SuccessSignUp'}]});
+          });
+      } else {
+        storeData('userProfile', profile);
+        navigation.reset({index: 0, routes: [{name: 'SuccessSignUp'}]});
       }
       dispatch(setLoading(false));
-      navigation.replace('SuccessSignUp');
     })
     .catch((err) => {
       dispatch(setLoading(false));
       console.log('Sign Up Error', err.response.data.message);
       showMessage(err.response.data.message);
+    });
+};
+
+export const signInAction = (form, navigation) => (dispatch) => {
+  dispatch(setLoading(true));
+  Axios.post(`${API_HOST.uri}/login`, form)
+    .then((res) => {
+      console.log(res.data.data);
+      const profile = res.data.data.user;
+      const token = `${res.data.data.token_type} ${res.data.data.access_token}`;
+
+      dispatch(setLoading(false));
+      storeData('token', {value: token});
+      storeData('userProfile', profile);
+      navigation.reset({index: 0, routes: [{name: 'MainApp'}]});
+    })
+    .catch((err) => {
+      dispatch(setLoading(false));
+      showMessage(err?.response?.data?.message);
     });
 };

@@ -3,16 +3,13 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {ICBack} from '../../../assets';
 
 const Header = ({title, subTitle, navigation, onBack}) => {
-  const onHandleBack = () => {
-    navigation.goBack();
-  };
   return (
     <View style={styles.container}>
       {onBack && (
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.back}
-          onPress={onHandleBack}>
+          onPress={onBack}>
           <ICBack />
         </TouchableOpacity>
       )}
