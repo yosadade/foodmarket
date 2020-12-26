@@ -1,22 +1,23 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
-import {FoodDummy1} from '../../../assets/dummy';
-import {ICStarOn, ICStarOff} from '../../../assets';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Rating} from '..';
 
-const FoodCard = ({image, name, rating}) => {
+const FoodCard = ({image, name, rating, onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={onPress}
+      style={styles.container}>
       <Image source={image} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.title}>{name}</Text>
         <View style={styles.rating}>
-          {/* <View style={styles.star}> */}
-          <Rating number={rating} />
-          {/* </View> */}
+          <View style={styles.star}>
+            <Rating number={rating} />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

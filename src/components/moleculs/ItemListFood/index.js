@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Rating from '../Rating';
+import Numbers from '../Numbers';
 
 const ItemListFood = ({
   image,
@@ -13,6 +14,7 @@ const ItemListFood = ({
   type,
   date,
   status,
+  rating,
 }) => {
   const renderContent = () => {
     switch (type) {
@@ -23,10 +25,10 @@ const ItemListFood = ({
               <Image source={image} style={styles.image} />
               <View>
                 <Text style={styles.title}>{name}</Text>
-                <Text style={styles.subTitle}>IDR {price}</Text>
+                <Numbers number={price} style={styles.titlePrice} />
               </View>
             </View>
-            <Rating />
+            <Rating number={rating} />
           </>
         );
       case 'order-summary':
@@ -36,6 +38,7 @@ const ItemListFood = ({
               <Image source={image} style={styles.image} />
               <View>
                 <Text style={styles.title}>{name}</Text>
+                <Numbers number={price} style={styles.titlePrice} />
                 <Text style={styles.subTitle}>IDR {price}</Text>
               </View>
             </View>
@@ -120,6 +123,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     marginRight: 12,
+  },
+  titlePrice: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 12,
+    color: '#8D92A3',
+    // color: '#020202',
   },
   title: {
     fontFamily: 'Poppins-Regular',

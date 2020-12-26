@@ -6,22 +6,23 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import {FoodDummy9, ICBackWhite} from '../../assets';
-import {Rating, Button, Counter} from '../../components';
+import {ICBackWhite} from '../../assets';
+import {Rating, Button, Counter, Numbers} from '../../components';
 
-const FoodDetail = ({navigation}) => {
-  const [count, setCount] = useState(0);
+const FoodDetail = ({navigation, route}) => {
+  const {
+    name,
+    picturePath,
+    description,
+    ingredients,
+    rate,
+    price,
+  } = route.params;
+  const [totalItem, setTotalItem] = useState(1);
 
-  const onHandleBack = () => {
-    navigation.goBack();
-  };
-
-  const onHandleCountMin = () => {
-    count <= 0 ? setCount(count) : setCount(count - 1);
-  };
-
-  const onHandleCountPlus = () => {
-    setCount(count + 1);
+  const onCounterChange = (value) => {
+    console.log('value:', value);
+    setTotalItem(value);
   };
 
   const onHandleOrderNow = () => {
@@ -29,8 +30,10 @@ const FoodDetail = ({navigation}) => {
   };
   return (
     <View style={styles.page}>
-      <ImageBackground source={FoodDummy9} style={styles.cover}>
-        <TouchableOpacity style={styles.back} onPress={onHandleBack}>
+      <ImageBackground source={{uri: picturePath}} style={styles.cover}>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => navigation.goBack()}>
           <ICBackWhite />
         </TouchableOpacity>
       </ImageBackground>
@@ -39,30 +42,22 @@ const FoodDetail = ({navigation}) => {
         <View style={styles.mainContent}>
           <View style={styles.productContainer}>
             <View>
-              <Text style={styles.title}>Cherry Healthy</Text>
-              <Rating />
+              <Text style={styles.title}>{name}</Text>
+              <Rating number={rate} />
             </View>
-            <Counter
-              count={count}
-              onPressMin={onHandleCountMin}
-              onPressPlus={onHandleCountPlus}
-            />
+            <Counter onValueChange={onCounterChange} />
           </View>
 
-          <Text style={styles.desc}>
-            Makanan khas Bandung yang cukup sering dipesan oleh anak muda dengan
-            pola makan yang cukup tinggi dengan mengutamakan diet yang sehat dan
-            teratur.
-          </Text>
+          <Text style={styles.desc}>{description}</Text>
 
           <Text style={styles.label}>Ingridients:</Text>
-          <Text style={styles.desc}>Seledri, telur, blueberry, madu</Text>
+          <Text style={styles.desc}>{ingredients}</Text>
         </View>
 
         <View style={styles.footer}>
           <View style={styles.priceContainer}>
             <Text style={styles.labelPrice}>Total Price:</Text>
-            <Text>IDR 720.000</Text>
+            <Numbers number={totalItem * price} style={styles.priceTotal} />
           </View>
           <View style={styles.button}>
             <Button title="Order Now" onPress={onHandleOrderNow} />
@@ -138,6 +133,10 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontFamily: 'Poppins-Regular',
     color: '#8D92A3',
+  },
+  priceTotal: {
+    fontFamily: 'Poppins-Regular',
+    color: '#020202',
   },
   button: {
     width: 163,

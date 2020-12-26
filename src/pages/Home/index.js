@@ -12,7 +12,7 @@ import {getData} from '../../utils';
 import {useDispatch, useSelector} from 'react-redux';
 import {getFoodData} from '../../redux/action';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [photo, setPhoto] = useState(ProfileDummy);
 
   const dispatch = useDispatch();
@@ -38,16 +38,14 @@ const Home = () => {
               {food.map((itemFood) => {
                 return (
                   <FoodCard
+                    key={itemFood.id}
                     image={{uri: itemFood.picturePath}}
                     name={itemFood.name}
                     rating={itemFood.rate}
+                    onPress={() => navigation.navigate('FoodDetail', itemFood)}
                   />
                 );
               })}
-              {/* <FoodCard image={FoodDummy1} name="Cherry Healthy" />
-              <FoodCard image={FoodDummy5} name="Cherry Healthy" />
-              <FoodCard image={FoodDummy3} name="Cherry Healthy" />
-              <FoodCard image={FoodDummy4} name="Cherry Healthy" /> */}
             </View>
           </ScrollView>
         </View>
