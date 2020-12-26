@@ -39,7 +39,6 @@ const ItemListFood = ({
               <View>
                 <Text style={styles.title}>{name}</Text>
                 <Numbers number={price} style={styles.titlePrice} />
-                <Text style={styles.subTitle}>IDR {price}</Text>
               </View>
             </View>
             <Text style={styles.subTitle}>{item} items</Text>

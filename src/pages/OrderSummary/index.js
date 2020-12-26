@@ -2,21 +2,18 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {Header, ItemListFood, ItemValue, Button} from '../../components';
-import {FoodDummy1} from '../../assets';
 
-const OrderSummary = ({navigation}) => {
+const OrderSummary = ({navigation, route}) => {
+  const {item, transaction, userProfile} = route.params;
   const onHandleCheckout = () => {
     navigation.replace('SuccessOrder');
-  };
-  const onHandleBack = () => {
-    navigation.goBack();
   };
   return (
     <View style={styles.page}>
       <Header
         title="Payment"
         subTitle="You deserve better meal"
-        onBack={() => {}}
+        onBack={() => navigation.goBack()}
       />
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -25,30 +22,39 @@ const OrderSummary = ({navigation}) => {
           <Text style={styles.label}>Item Order</Text>
           <ItemListFood
             type="order-summary"
-            item={14}
-            image={FoodDummy1}
-            name="Soup Bumil"
-            price="297.000"
+            item={transaction.totalItem}
+            image={{uri: item.picturePath}}
+            name={item.name}
+            price={item.price}
           />
           <Text style={[styles.label, {marginTop: 16}]}>
             Details Transaction
           </Text>
-          <ItemValue label="Cherry Healthy" value="IDR 1.839.000" />
-          <ItemValue label="Drive" value="IDR 50.000" />
-          <ItemValue label="Tax 10%" value="IDR 183.900" />
+          <ItemValue
+            label={item.name}
+            value={transaction.totalPrice}
+            type="currency"
+          />
+          <ItemValue
+            label="Driver"
+            value={transaction.driver}
+            type="currency"
+          />
+          <ItemValue label="Tax 10%" value={transaction.tax} type="currency" />
           <ItemValue
             label="Total Price"
-            value="IDR 2.000.000"
+            value={transaction.total}
             valueColor="#1ABC9C"
+            type="currency"
           />
         </View>
         <View style={styles.content}>
           <Text style={styles.label}>Deliver To:</Text>
-          <ItemValue label="Name" value="Yosada Dede" />
-          <ItemValue label="Phone No." value="0899 1989 089" />
-          <ItemValue label="Address" value="Sukorame, Dlingo" />
-          <ItemValue label="House No." value="17" />
-          <ItemValue label="City" value="Yogyakarta" />
+          <ItemValue label="Name" value={userProfile.name} />
+          <ItemValue label="Phone No." value={userProfile.phoneNumber} />
+          <ItemValue label="Address" value={userProfile.address} />
+          <ItemValue label="House No." value={userProfile.houseNumber} />
+          <ItemValue label="City" value={userProfile.city} />
         </View>
         <View style={styles.button}>
           <Button title="Checkout Now" onPress={onHandleCheckout} />
