@@ -18,6 +18,7 @@ const FoodDetail = ({navigation, route}) => {
     ingredients,
     rate,
     price,
+    id,
   } = route.params;
   const [totalItem, setTotalItem] = useState(1);
   const [userProfile, setUserProfile] = useState({});
@@ -44,6 +45,7 @@ const FoodDetail = ({navigation, route}) => {
         name: name,
         price: price,
         picturePath: picturePath,
+        id: id,
       },
       transaction: {
         totalItem: totalItem,
