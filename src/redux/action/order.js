@@ -17,9 +17,6 @@ export const getPastOrders = () => (dispatch) => {
       }),
     ])
       .then((res1, res2) => {
-        // console.log('token in progress', resToken.value);
-        console.log('get past order 1', res1.data);
-        console.log('get past order 2', res2.data);
         const cancelled = res1.data.data.data;
         const delivered = res2.data.data.data;
         dispatch({
@@ -27,9 +24,7 @@ export const getPastOrders = () => (dispatch) => {
           value: [...cancelled, ...delivered],
         });
       })
-      .catch((err) => {
-        console.log('error', err);
-      });
+      .catch(() => {});
   });
 };
 
@@ -87,11 +82,10 @@ export const getOrders = () => (dispatch) => {
       },
     })
       .then((res) => {
-        console.log('get orders', res.data);
         dispatch({type: 'SET_ORDER', value: res.data.data.data});
       })
       .catch((err) => {
-        console.log('error', err);
+        showMessage(err?.response?.message || 'Terjadi Kesalahan');
       });
   });
 };

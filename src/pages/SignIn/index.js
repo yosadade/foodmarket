@@ -17,7 +17,6 @@ const SignIn = ({navigation}) => {
     navigation.navigate('SignUp');
   };
   const onSubmit = () => {
-    console.log(form);
     dispatch(signInAction(form, navigation));
   };
   return (

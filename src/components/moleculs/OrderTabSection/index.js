@@ -1,14 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  ScrollView,
-  RefreshControl,
-} from 'react-native';
+import {Text, View, Dimensions, ScrollView, RefreshControl} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListFood} from '..';
 import {useSelector, useDispatch} from 'react-redux';
@@ -62,7 +55,6 @@ const InProgress = () => {
     setRefreshing(false);
   };
 
-  console.log('data refresh inprogress', inProgress);
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -166,5 +158,3 @@ const OrderTabSection = () => {
 };
 
 export default OrderTabSection;
-
-const styles = StyleSheet.create({});

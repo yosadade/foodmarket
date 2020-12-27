@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {Header, ItemListFood, ItemValue, Button} from '../../components';
 import Axios from 'axios';
-import {getData} from '../../utils';
+import {getData, showMessage} from '../../utils';
 
 const OrderDetail = ({navigation, route}) => {
   const order = route.params;
@@ -23,12 +23,11 @@ const OrderDetail = ({navigation, route}) => {
           },
         },
       )
-        .then((res) => {
-          console.log('success cancel order', res);
+        .then(() => {
           navigation.reset({index: 0, routes: [{name: 'Order'}]});
         })
         .catch((err) => {
-          console.log('error', err);
+          showMessage(err?.response?.message || 'Terjadi Kesalahan');
         });
     });
   };

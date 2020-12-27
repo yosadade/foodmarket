@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {WebView} from 'react-native-webview';
 import Axios from 'axios';
@@ -10,12 +10,11 @@ import {
   Button,
   Loading,
 } from '../../components';
-import {getData} from '../../utils';
+import {getData, showMessage} from '../../utils';
 import {API_HOST} from '../../config';
 
 const OrderSummary = ({navigation, route}) => {
   const {item, transaction, userProfile} = route.params;
-  const [token, setToken] = useState('');
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const [paymentUrl, setPaymentUrl] = useState('shopee');
 
@@ -34,19 +33,15 @@ const OrderSummary = ({navigation, route}) => {
         },
       })
         .then((res) => {
-          console.log('checkout sukses', res);
           setIsPaymentOpen(true);
           setPaymentUrl(res.data.data.payment_url);
         })
         .catch((err) => {
-          console.log(err);
+          showMessage(err?.response?.message || 'Terjadi Kesalahan');
         });
     });
   };
   const onNavChange = (state) => {
-    console.log('nav', state);
-    const urlSuccess =
-      'http://foodmarket-backend.buildwithangga.id/midtrans/success?order_id=1274&status_code=201&transaction_status=pending';
     const titleWeb = 'Laravel';
     if (state.title === titleWeb) {
       navigation.reset({index: 0, routes: [{name: 'SuccessOrder'}]});

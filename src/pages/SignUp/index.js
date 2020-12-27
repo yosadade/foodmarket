@@ -24,7 +24,6 @@ const SignUp = ({navigation}) => {
 
   const dispatch = useDispatch();
   const onSubmit = () => {
-    console.log(form);
     dispatch({type: 'SET_REGISTER', value: form});
     navigation.replace('SignUpAddress');
   };
@@ -37,7 +36,6 @@ const SignUp = ({navigation}) => {
         maxHeight: 200,
       },
       (response) => {
-        console.log('Response', response);
         if (response.didCancel || response.errorMessage) {
           showMessage('Anda tidak memilih photo');
         } else {

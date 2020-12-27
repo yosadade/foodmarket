@@ -18,12 +18,11 @@ const SignUpAddress = ({navigation}) => {
   const photoReducer = useSelector((state) => state.photoReducer);
 
   const onSubmit = () => {
-    console.log(form);
     const data = {
       ...form,
       ...registerReducer,
     };
-    console.log('data register', data);
+
     dispatch(setLoading(true));
     dispatch(signUpAction(data, photoReducer, navigation));
   };

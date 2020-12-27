@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {ProfileTabSection} from '../../components';
 import {getData, showMessage, storeData} from '../../utils';
-import {useDispatch} from 'react-redux';
 import Axios from 'axios';
 import {API_HOST} from '../../config';
 
@@ -16,12 +15,9 @@ const Profie = () => {
   const updateUserProfile = () => {
     getData('userProfile')
       .then((res) => {
-        console.log(res.profile_photo_url);
         setUserProfile(res);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(() => {});
   };
 
   const updatePhoto = () => {
@@ -32,12 +28,10 @@ const Profie = () => {
         maxHeight: 200,
       },
       (response) => {
-        console.log('Response =', response);
-
         if (response.didCancel || response.error) {
           showMessage('Anda tidak memilih photo');
         } else {
-          const source = {uri: response.uri};
+          // const source = {uri: response.uri};
           const dataImage = {
             uri: response.uri,
             type: response.type,
@@ -62,7 +56,7 @@ const Profie = () => {
                 });
               })
               .catch((err) => {
-                console.log(err.response);
+                showMessage(err?.response?.message || 'Terjadi Kesalahan');
               });
           });
         }

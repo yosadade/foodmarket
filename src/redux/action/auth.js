@@ -45,7 +45,7 @@ export const signUpAction = (dataRegister, photoReducer, navigation) => (
     })
     .catch((err) => {
       dispatch(setLoading(false));
-      console.log('Sign Up Error', err.response.data.message);
+
       showMessage(err.response.data.message);
     });
 };
@@ -54,7 +54,6 @@ export const signInAction = (form, navigation) => (dispatch) => {
   dispatch(setLoading(true));
   Axios.post(`${API_HOST.uri}/login`, form)
     .then((res) => {
-      console.log(res.data.data);
       const profile = res.data.data.user;
       const token = `${res.data.data.token_type} ${res.data.data.access_token}`;
 

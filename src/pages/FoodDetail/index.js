@@ -30,7 +30,6 @@ const FoodDetail = ({navigation, route}) => {
   }, []);
 
   const onCounterChange = (value) => {
-    console.log('value:', value);
     setTotalItem(value);
   };
 
@@ -56,7 +55,7 @@ const FoodDetail = ({navigation, route}) => {
       },
       userProfile,
     };
-    console.log('data for checkout', data);
+
     navigation.navigate('OrderSummary', data);
   };
 

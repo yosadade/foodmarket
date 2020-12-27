@@ -1,14 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import {
-  ProfileDummy,
-  FoodDummy1,
-  FoodDummy3,
-  FoodDummy4,
-  FoodDummy5,
-} from '../../assets/dummy';
+import {ProfileDummy} from '../../assets/dummy';
 import {FoodCard, Gap, HomeTabSection, HomeProfile} from '../../components';
-import {getData} from '../../utils';
+import {getData, showMessage} from '../../utils';
 import {useDispatch, useSelector} from 'react-redux';
 import {getFoodData} from '../../redux/action';
 
@@ -21,10 +15,11 @@ const Home = ({navigation}) => {
     dispatch(getFoodData());
     getData('userProfile')
       .then((res) => {
-        // console.log(res.profile_photo_url);
         setPhoto({uri: res.profile_photo_url});
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        showMessage(err?.response?.message || 'Terjadi Kesalahan');
+      });
   }, [dispatch]);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>

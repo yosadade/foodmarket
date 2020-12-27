@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {EmptyOrder, Header, OrderTabSection} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {getOrders} from '../../redux/action';
 
-const Order = ({navigation}) => {
-  const [isEmpty] = useState(false);
+const Order = () => {
   const dispatch = useDispatch();
   const {orders} = useSelector((state) => state.orderReducer);
   useEffect(() => {

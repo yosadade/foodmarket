@@ -8,9 +8,7 @@ import {Loading} from './components';
 
 const MainApp = () => {
   const {isLoading} = useSelector((state) => state.globalReducer);
-  useEffect(() => {
-    console.log('isLoading', isLoading);
-  }, [isLoading]);
+  useEffect(() => {}, []);
   return (
     <NavigationContainer>
       <Router />
