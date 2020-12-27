@@ -51,28 +51,35 @@ const ItemListFood = ({
               <Image source={image} style={styles.image} />
               <View>
                 <Text style={styles.title}>{name}</Text>
-                <Text style={styles.subTitle}>
-                  {orderItems} items . IDR {totalOrder}
-                </Text>
+                <View style={styles.row}>
+                  <Text style={styles.subTitle}>{orderItems} items </Text>
+                  <View style={styles.dot} />
+                  <Numbers number={price} style={styles.subTitle} />
+                </View>
               </View>
             </View>
           </>
         );
       case 'past-orders':
+        const formatedDate = new Date(date).toDateString();
         return (
           <>
             <View style={styles.content}>
               <Image source={image} style={styles.image} />
               <View>
                 <Text style={styles.title}>{name}</Text>
-                <Text style={styles.subTitle}>
-                  {orderItems} items . IDR {totalOrder}
-                </Text>
+                <View style={styles.row}>
+                  <Text style={styles.subTitle}>{orderItems} items </Text>
+                  <View style={styles.dot} />
+                  <Numbers number={totalOrder} style={styles.subTitle} />
+                </View>
               </View>
             </View>
             <View style={styles.statusContainer}>
-              <Text style={styles.date}>{date}</Text>
-              {status ? <Text style={styles.status}>{status}</Text> : null}
+              <Text style={styles.date}>{formatedDate}</Text>
+              {status ? (
+                <Text style={styles.status(status)}>{status}</Text>
+              ) : null}
             </View>
           </>
         );
@@ -123,6 +130,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginRight: 12,
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   titlePrice: {
     fontFamily: 'Poppins-Regular',
     fontSize: 12,
@@ -148,9 +159,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     color: '#8D92A3',
   },
-  status: {
+  status: (status) => ({
     fontSize: 10,
     fontFamily: 'Poppins-Regular',
-    color: '#D9435E',
+    color: status === 'CANCELLED' ? '#D9435E' : '#1ABC9C',
+  }),
+  dot: {
+    width: 3,
+    height: 3,
+    borderRadius: 3,
+    backgroundColor: '#8D92A3',
+    marginRight: 3,
   },
 });

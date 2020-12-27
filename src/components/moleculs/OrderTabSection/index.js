@@ -1,9 +1,18 @@
-import React, {useState} from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  ScrollView,
+  RefreshControl,
+} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListFood} from '..';
-import {FoodDummy6, FoodDummy7, FoodDummy8, FoodDummy9} from '../../../assets';
+import {useSelector, useDispatch} from 'react-redux';
+import {getInProgress, getPastOrders} from '../../../redux/action';
 
 const renderTabBar = (props) => (
   <TabBar
@@ -37,79 +46,98 @@ const renderTabBar = (props) => (
 );
 
 const InProgress = () => {
+  const [refreshing, setRefreshing] = useState(false);
+
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {inProgress} = useSelector((state) => state.orderReducer);
+
+  useEffect(() => {
+    dispatch(getInProgress());
+  }, [dispatch]);
+
+  const onRefreshing = () => {
+    setRefreshing(true);
+    dispatch(getInProgress());
+    setRefreshing(false);
+  };
+
+  console.log('data refresh inprogress', inProgress);
   return (
-    <View
-      style={{
-        paddingTop: 8,
-        paddingHorizontal: 24,
-        backgroundColor: '#FFFFFF',
-      }}>
-      <ItemListFood
-        type="in-progress"
-        orderItems={3}
-        totalOrder="280.000"
-        image={FoodDummy6}
-        name="Soup Bumil"
-        onPress={() => navigation.navigate('OrderDetail')}
-      />
-      <ItemListFood
-        type="in-progress"
-        orderItems={3}
-        totalOrder="280.000"
-        image={FoodDummy7}
-        name="Soup Bumil"
-        onPress={() => navigation.navigate('OrderDetail')}
-      />
-      <ItemListFood
-        type="in-progress"
-        orderItems={3}
-        totalOrder="280.000"
-        image={FoodDummy8}
-        name="Soup Bumil"
-        onPress={() => navigation.navigate('OrderDetail')}
-      />
-      <ItemListFood
-        type="in-progress"
-        orderItems={3}
-        totalOrder="280.000"
-        image={FoodDummy9}
-        name="Soup Bumil"
-        onPress={() => navigation.navigate('OrderDetail')}
-      />
-    </View>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefreshing} />
+      }>
+      <View
+        style={{
+          paddingTop: 8,
+          paddingHorizontal: 24,
+          backgroundColor: '#FFFFFF',
+        }}>
+        {inProgress.map((order) => {
+          return (
+            <ItemListFood
+              key={order.id}
+              type="in-progress"
+              orderItems={order.quantity}
+              price={order.total}
+              image={{uri: order.food.picturePath}}
+              name={order.food.name}
+              onPress={() => navigation.navigate('OrderDetail', order)}
+            />
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
 
 const PastOrders = () => {
+  const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {pastOrders} = useSelector((state) => state.orderReducer);
+
+  useEffect(() => {
+    dispatch(getPastOrders());
+  }, [dispatch]);
+
+  const onRefreshing = () => {
+    setRefreshing(true);
+    dispatch(getInProgress());
+    setRefreshing(false);
+  };
+
   return (
-    <View
-      style={{
-        paddingTop: 8,
-        paddingHorizontal: 24,
-        backgroundColor: '#FFFFFF',
-      }}>
-      <ItemListFood
-        type="past-orders"
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy8}
-        name="Shrimp"
-        orderItems={13}
-        totalOrder="230.000"
-        date="Jun 12, 14.00"
-      />
-      <ItemListFood
-        type="past-orders"
-        onPress={() => navigation.navigate('OrderDetail')}
-        image={FoodDummy6}
-        name="Soup Bumil"
-        orderItems={13}
-        totalOrder="230.000"
-        date="Jun 12, 14.00"
-        status="Cancelled"
-      />
-    </View>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefreshing} />
+      }>
+      <View
+        style={{
+          paddingTop: 8,
+          paddingHorizontal: 24,
+          backgroundColor: '#FFFFFF',
+        }}>
+        {pastOrders.map((order) => {
+          return (
+            <ItemListFood
+              key={order.id}
+              type="past-orders"
+              onPress={() => navigation.navigate('OrderDetail', order)}
+              image={{uri: order.food.picturePath}}
+              name={order.food.name}
+              orderItems={order.quantity}
+              price={order.total}
+              date={order.created_at}
+              status={order.status}
+            />
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
 

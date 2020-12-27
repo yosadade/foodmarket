@@ -19,13 +19,6 @@ const OrderSummary = ({navigation, route}) => {
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const [paymentUrl, setPaymentUrl] = useState('shopee');
 
-  useEffect(() => {
-    getData('token').then((res) => {
-      console.log('token', res);
-      setToken(res.value);
-    });
-  }, []);
-
   const onHandleCheckout = () => {
     const data = {
       food_id: item.id,
@@ -34,19 +27,21 @@ const OrderSummary = ({navigation, route}) => {
       total: transaction.total,
       status: 'PENDING',
     };
-    Axios.post(`${API_HOST.uri}/checkout`, data, {
-      headers: {
-        Authorization: token,
-      },
-    })
-      .then((res) => {
-        console.log('checkout sukses', res);
-        setIsPaymentOpen(true);
-        setPaymentUrl(res.data.data.payment_url);
+    getData('token').then((resToken) => {
+      Axios.post(`${API_HOST.uri}/checkout`, data, {
+        headers: {
+          Authorization: resToken.value,
+        },
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          console.log('checkout sukses', res);
+          setIsPaymentOpen(true);
+          setPaymentUrl(res.data.data.payment_url);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   };
   const onNavChange = (state) => {
     console.log('nav', state);
@@ -54,7 +49,7 @@ const OrderSummary = ({navigation, route}) => {
       'http://foodmarket-backend.buildwithangga.id/midtrans/success?order_id=1274&status_code=201&transaction_status=pending';
     const titleWeb = 'Laravel';
     if (state.title === titleWeb) {
-      navigation.replace('SuccessOrder');
+      navigation.reset({index: 0, routes: [{name: 'SuccessOrder'}]});
     }
   };
   if (isPaymentOpen) {
