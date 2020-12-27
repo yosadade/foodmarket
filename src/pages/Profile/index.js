@@ -1,11 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {ProfileTabSection} from '../../components';
-import {getData} from '../../utils';
+import {getData, showMessage, storeData} from '../../utils';
+import {useDispatch} from 'react-redux';
+import Axios from 'axios';
+import {API_HOST} from '../../config';
 
 const Profie = () => {
   const [userProfile, setUserProfile] = useState({});
   useEffect(() => {
+    updateUserProfile();
+  }, []);
+
+  const updateUserProfile = () => {
     getData('userProfile')
       .then((res) => {
         console.log(res.profile_photo_url);
@@ -14,16 +22,70 @@ const Profie = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
+
+  const updatePhoto = () => {
+    launchImageLibrary(
+      {
+        quality: 0.5,
+        maxWidth: 200,
+        maxHeight: 200,
+      },
+      (response) => {
+        console.log('Response =', response);
+
+        if (response.didCancel || response.error) {
+          showMessage('Anda tidak memilih photo');
+        } else {
+          const source = {uri: response.uri};
+          const dataImage = {
+            uri: response.uri,
+            type: response.type,
+            name: response.fileName,
+          };
+          const photoForUpload = new FormData();
+          photoForUpload.append('file', dataImage);
+          getData('token').then((resToken) => {
+            Axios.post(`${API_HOST.uri}/user/photo`, photoForUpload, {
+              headers: {
+                Authorization: resToken.value,
+                'Content-Type': 'multipart/form-data',
+              },
+            })
+              .then((res) => {
+                getData('userProfile').then((resUser) => {
+                  showMessage('Update Photo Berhasil', 'success');
+                  resUser.profile_photo_url = `http://foodmarket-backend.buildwithangga.id/storage/${res.data.data[0]}`;
+                  storeData('userProfile', resUser).then(() => {
+                    updateUserProfile();
+                  });
+                });
+              })
+              .catch((err) => {
+                console.log(err.response);
+              });
+          });
+        }
+
+        // setPhoto(source)
+        // dispatch({type: 'SET_PHOTO', value: dataImage})
+        // dispatch({type: 'SET_UPLOAD_STATUS', value: true})
+      },
+    );
+  };
+
   return (
     <View style={styles.page}>
       <View style={styles.photo}>
-        <View style={styles.borderPhoto}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.borderPhoto}
+          onPress={updatePhoto}>
           <Image
             source={{uri: userProfile.profile_photo_url}}
             style={styles.photoContainer}
           />
-        </View>
+        </TouchableOpacity>
         <Text style={styles.name}>{userProfile.name}</Text>
         <Text style={styles.email}>{userProfile.email}</Text>
       </View>
