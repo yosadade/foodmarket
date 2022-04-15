@@ -1,35 +1,30 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Text, View, Dimensions, ScrollView, RefreshControl} from 'react-native';
+import {
+  Text,
+  View,
+  Dimensions,
+  ScrollView,
+  RefreshControl,
+  StyleSheet,
+} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListFood} from '..';
 import {useSelector, useDispatch} from 'react-redux';
 import {getInProgress, getPastOrders} from '../../../redux/action';
+import {colors} from '../../../utils';
 
 const renderTabBar = (props) => (
   <TabBar
     {...props}
-    indicatorStyle={{
-      backgroundColor: '#020202',
-      height: 3,
-      width: '15%',
-      marginLeft: '3%',
-    }}
-    style={{
-      backgroundColor: '#FFFFFF',
-      elevation: 0,
-      shadowOpacity: 0,
-      borderBottomColor: '#F2F2F2',
-      borderBottomWidth: 1,
-    }}
-    tabStyle={{
-      width: 'auto',
-    }}
+    indicatorStyle={styles.indicatorStyle}
+    style={styles.container}
+    tabStyle={styles.tabStyle}
     renderLabel={({route, focused, color}) => (
       <Text
         style={{
-          color: focused ? '#020202' : '#8D92A3',
+          color: focused ? colors.black : colors.grey,
           fontFamily: 'Poppins-Medium',
         }}>
         {route.title}
@@ -65,7 +60,7 @@ const InProgress = () => {
         style={{
           paddingTop: 8,
           paddingHorizontal: 24,
-          backgroundColor: '#FFFFFF',
+          backgroundColor: colors.white,
         }}>
         {inProgress.map((order) => {
           return (
@@ -111,7 +106,7 @@ const PastOrders = () => {
         style={{
           paddingTop: 8,
           paddingHorizontal: 24,
-          backgroundColor: '#FFFFFF',
+          backgroundColor: colors.white,
         }}>
         {pastOrders.map((order) => {
           return (
@@ -156,5 +151,24 @@ const OrderTabSection = () => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  indicatorStyle: {
+    backgroundColor: colors.black,
+    height: 3,
+    width: '15%',
+    marginLeft: '3%',
+  },
+  container: {
+    backgroundColor: colors.white,
+    elevation: 0,
+    shadowOpacity: 0,
+    borderBottomColor: colors.white3,
+    borderBottomWidth: 1,
+  },
+  tabStyle: {
+    width: 'auto',
+  },
+});
 
 export default OrderTabSection;

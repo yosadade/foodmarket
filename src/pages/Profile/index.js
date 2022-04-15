@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {ProfileTabSection} from '../../components';
-import {getData, showMessage, storeData} from '../../utils';
+import {colors, getData, showMessage, storeData} from '../../utils';
 import Axios from 'axios';
 import {API_HOST} from '../../config';
 
@@ -31,7 +31,6 @@ const Profie = () => {
         if (response.didCancel || response.error) {
           showMessage('Anda tidak memilih photo');
         } else {
-          // const source = {uri: response.uri};
           const dataImage = {
             uri: response.uri,
             type: response.type,
@@ -60,10 +59,6 @@ const Profie = () => {
               });
           });
         }
-
-        // setPhoto(source)
-        // dispatch({type: 'SET_PHOTO', value: dataImage})
-        // dispatch({type: 'SET_UPLOAD_STATUS', value: true})
       },
     );
   };
@@ -95,7 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   photo: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 16,
@@ -103,7 +98,7 @@ const styles = StyleSheet.create({
   },
   borderPhoto: {
     borderWidth: 1,
-    borderColor: '#8D92A3',
+    borderColor: colors.grey,
     width: 110,
     height: 110,
     borderRadius: 110 / 2,
@@ -116,25 +111,25 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 90 / 2,
     padding: 24,
-    backgroundColor: '#F0F0F0',
+    backgroundColor: colors.white2,
     justifyContent: 'center',
   },
   addPhoto: {
     fontSize: 14,
     fontFamily: 'Poppins-Light',
-    color: '#8D92A3',
+    color: colors.grey,
     textAlign: 'center',
   },
   name: {
     fontSize: 18,
     marginTop: 16,
     fontFamily: 'Poppins-Medium',
-    color: '#020202',
+    color: colors.black,
   },
   email: {
     fontSize: 14,
     marginTop: 6,
     fontFamily: 'Poppins-Light',
-    color: '#8D92A3',
+    color: colors.grey,
   },
 });

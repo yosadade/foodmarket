@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Numbers} from '..';
+import {colors} from '../../../utils';
 
 const ItemValue = ({label, value, valueColor = '#020202', type}) => {
   return (
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontFamily: 'Poppins-Regular',
-    color: '#8D92A3',
+    color: colors.grey,
   },
   value: (valueColor) => ({
     fontSize: 14,

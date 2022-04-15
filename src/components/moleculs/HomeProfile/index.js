@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {ProfileDummy} from '../../../assets';
-import {getData} from '../../../utils';
+import {colors, getData} from '../../../utils';
 import {useNavigation} from '@react-navigation/native';
 
 const HomeProfile = ({image}) => {
@@ -36,17 +36,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 32,
     paddingBottom: 24,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   appName: {
     fontSize: 22,
     fontFamily: 'Poppins-Medium',
-    color: '#020202',
+    color: colors.black,
   },
   desc: {
     fontSize: 14,
     fontFamily: 'Poppins-Light',
-    color: '#8D92A3',
+    color: colors.grey,
   },
   photoProfile: {
     width: 50,

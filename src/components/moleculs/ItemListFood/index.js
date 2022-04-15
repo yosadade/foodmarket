@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Rating from '../Rating';
 import Numbers from '../Numbers';
+import {colors} from '../../../utils';
 
 const ItemListFood = ({
   image,
@@ -114,7 +115,7 @@ export default ItemListFood;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 8,
@@ -137,18 +138,17 @@ const styles = StyleSheet.create({
   titlePrice: {
     fontFamily: 'Poppins-Regular',
     fontSize: 12,
-    color: '#8D92A3',
-    // color: '#020202',
+    color: colors.grey,
   },
   title: {
     fontFamily: 'Poppins-Regular',
     fontSize: 16,
-    color: '#020202',
+    color: colors.black,
   },
   subTitle: {
     fontFamily: 'Poppins-Regular',
     fontSize: 12,
-    color: '#8D92A3',
+    color: colors.grey,
   },
   statusContainer: {
     alignItems: 'flex-end',
@@ -157,18 +157,18 @@ const styles = StyleSheet.create({
   date: {
     fontSize: 10,
     fontFamily: 'Poppins-Regular',
-    color: '#8D92A3',
+    color: colors.grey,
   },
   status: (status) => ({
     fontSize: 10,
     fontFamily: 'Poppins-Regular',
-    color: status === 'CANCELLED' ? '#D9435E' : '#1ABC9C',
+    color: status === 'CANCELLED' ? colors.red : colors.green,
   }),
   dot: {
     width: 3,
     height: 3,
     borderRadius: 3,
-    backgroundColor: '#8D92A3',
+    backgroundColor: colors.grey,
     marginRight: 3,
   },
 });

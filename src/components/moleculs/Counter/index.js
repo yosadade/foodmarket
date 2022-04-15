@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {ICPlus, ICMin} from '../../../assets';
+import {colors} from '../../../utils';
 
 const Counter = ({onValueChange}) => {
   const [value, setValue] = useState(1);
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   count: {
     fontSize: 16,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
     marginHorizontal: 10,
   },
 });

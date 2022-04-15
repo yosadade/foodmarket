@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
-import {Text, View, Dimensions} from 'react-native';
+import {Text, View, Dimensions, StatusBar} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {Logo} from '../../assets';
-import {getData} from '../../utils';
+import {colors, getData} from '../../utils';
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
@@ -21,6 +21,11 @@ const SplashScreen = ({navigation}) => {
   EStyleSheet.build({$rem: entireScreenWidth / 320});
   return (
     <View style={styles.page}>
+      <StatusBar
+        animated={true}
+        backgroundColor={colors.yellow}
+        barStyle="dark-content"
+      />
       <Logo />
       <Text style={styles.title}>FoodMarket</Text>
     </View>
@@ -31,12 +36,11 @@ export default SplashScreen;
 
 const styles = EStyleSheet.create({
   page: {
-    // flex: 1,
     width: '100%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFC400',
+    backgroundColor: colors.yellow,
   },
   title: {
     fontFamily: 'Poppins-Medium',

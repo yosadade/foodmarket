@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Gap, Button} from '../../atoms';
 import {ILOrderEmpty} from '../../../assets';
 import {useNavigation} from '@react-navigation/native';
+import {colors} from '../../../utils';
 
 const EmptyOrder = () => {
   const navigation = useNavigation();
@@ -32,18 +33,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   title: {
     fontSize: 20,
     marginTop: 30,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
   subTitle: {
     fontSize: 14,
     fontFamily: 'Poppins-Light',
-    color: '#8D92A3',
+    color: colors.grey,
   },
   btnContainer: {
     width: '100%',

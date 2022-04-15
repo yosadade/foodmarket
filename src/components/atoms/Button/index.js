@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {colors} from '../../../utils';
 
-const Button = ({bgColor = '#FFC700', color, title, onPress}) => {
+const Button = ({bgColor = colors.yellow2, color, title, onPress}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}

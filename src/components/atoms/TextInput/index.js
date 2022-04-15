@@ -1,6 +1,8 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Text, View, TextInput as TextInputRN} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import {colors} from '../../../utils';
 
 const TextInput = ({label, placeholder, ...restProps}) => {
   return (
@@ -10,10 +12,9 @@ const TextInput = ({label, placeholder, ...restProps}) => {
         {...restProps}
         autoCapitalize="none"
         placeholder={placeholder}
-        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           borderWidth: 1,
-          borderColor: '#020202',
+          borderColor: colors.black,
           borderRadius: 8,
           padding: 10,
           marginTop: 8,
@@ -30,6 +31,6 @@ const styles = EStyleSheet.create({
   label: {
     fontSize: 18,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
 });

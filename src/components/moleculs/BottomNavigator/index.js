@@ -8,6 +8,7 @@ import {
   ICOrderOff,
   ICProfileOff,
 } from '../../../assets';
+import {colors} from '../../../utils';
 
 const Icon = ({label, focus}) => {
   switch (label) {
@@ -83,7 +84,7 @@ export default ButtomNavigator;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     paddingTop: 15,
     paddingBottom: 13,
     paddingHorizontal: 50,

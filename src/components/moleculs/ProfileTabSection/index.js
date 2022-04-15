@@ -1,24 +1,26 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListMenu} from '..';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {colors} from '../../../utils';
 
 const renderTabBar = (props) => (
   <TabBar
     {...props}
     indicatorStyle={{
-      backgroundColor: '#020202',
+      backgroundColor: colors.black,
       height: 3,
       width: '15%',
       marginLeft: '3%',
     }}
     style={{
-      backgroundColor: '#FFFFFF',
+      backgroundColor: colors.white,
       elevation: 0,
       shadowOpacity: 0,
-      borderBottomColor: '#F2F2F2',
+      borderBottomColor: colors.white3,
       borderBottomWidth: 1,
     }}
     tabStyle={{
@@ -27,7 +29,7 @@ const renderTabBar = (props) => (
     renderLabel={({route, focused, color}) => (
       <Text
         style={{
-          color: focused ? '#020202' : '#8D92A3',
+          color: focused ? colors.black : colors.grey,
           fontFamily: 'Poppins-Medium',
         }}>
         {route.title}
@@ -48,7 +50,7 @@ const Account = () => {
       style={{
         paddingTop: 8,
         paddingHorizontal: 24,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
       }}>
       <ItemListMenu label="Edit Profile" />
       <ItemListMenu label="Home Address" />
@@ -65,7 +67,7 @@ const FoodMarket = () => {
       style={{
         paddingTop: 8,
         paddingHorizontal: 24,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
       }}>
       <ItemListMenu label="Rate App" />
       <ItemListMenu label="Help Center" />

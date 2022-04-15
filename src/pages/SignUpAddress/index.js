@@ -2,7 +2,7 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Header, Gap, Button, TextInput, Select} from '../../components';
-import {useForm} from '../../utils';
+import {colors, useForm} from '../../utils';
 import {useSelector, useDispatch} from 'react-redux';
 import {setLoading, signUpAction} from '../../redux/action';
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     paddingHorizontal: 24,
     paddingVertical: 26,
     marginTop: 24,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   addPhoto: {
     fontSize: 14,
     fontFamily: 'Poppins-Light',
-    color: '#8D92A3',
+    color: colors.grey,
     textAlign: 'center',
   },
 });

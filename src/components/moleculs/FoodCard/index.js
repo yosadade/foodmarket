@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Rating} from '..';
+import {colors} from '../../../utils';
 
 const FoodCard = ({image, name, rating, onPress}) => {
   return (
@@ -26,10 +27,9 @@ export default FoodCard;
 const styles = StyleSheet.create({
   container: {
     width: 200,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     borderRadius: 8,
     marginRight: 24,
-    // tidak boleh ada konten yang melebihi card
     overflow: 'hidden',
     shadowColor: 'black',
     shadowOffset: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
   rating: {
     flexDirection: 'row',

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import {colors} from '../../../utils';
 
 const Select = ({label, value, onSelectChange}) => {
   return (
@@ -30,16 +31,16 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#020202',
+    borderColor: colors.black,
     borderRadius: 8,
     paddingHorizontal: 2,
     marginTop: 8,
   },
   picker: {
-    color: '#020202',
+    color: colors.black,
   },
 });

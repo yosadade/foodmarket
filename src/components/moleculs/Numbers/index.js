@@ -12,7 +12,6 @@ const Numbers = ({number, type, style}) => {
         decimalSeparator="."
         decimalScale={1}
         fixedDecimalScale
-        // style={styles.subTitle}
       />
     );
   }
@@ -24,7 +23,6 @@ const Numbers = ({number, type, style}) => {
       displayType="text"
       prefix="IDR "
       renderText={(value) => <Text style={style}>{value}</Text>}
-      // style={styles.subTitle}
     />
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {ICRight} from '../../../assets';
+import {colors} from '../../../utils';
 
 const ItemListMenu = ({label, onPress}) => {
   return (
@@ -22,6 +23,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
 });

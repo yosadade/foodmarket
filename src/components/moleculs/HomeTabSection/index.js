@@ -6,21 +6,22 @@ import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListFood} from '..';
 import {useSelector, useDispatch} from 'react-redux';
 import {getFoodDataByTypes} from '../../../redux/action';
+import {colors} from '../../../utils';
 
 const renderTabBar = (props) => (
   <TabBar
     {...props}
     indicatorStyle={{
-      backgroundColor: '#020202',
+      backgroundColor: colors.black,
       height: 3,
       width: '15%',
       marginLeft: '3%',
     }}
     style={{
-      backgroundColor: '#FFFFFF',
+      backgroundColor: colors.white,
       elevation: 0,
       shadowOpacity: 0,
-      borderBottomColor: '#F2F2F2',
+      borderBottomColor: colors.white3,
       borderBottomWidth: 1,
     }}
     tabStyle={{
@@ -29,7 +30,7 @@ const renderTabBar = (props) => (
     renderLabel={({route, focused, color}) => (
       <Text
         style={{
-          color: focused ? '#020202' : '#8D92A3',
+          color: focused ? colors.black : colors.grey,
           fontFamily: 'Poppins-Medium',
         }}>
         {route.title}
@@ -50,7 +51,7 @@ const NewTaste = () => {
       style={{
         paddingTop: 8,
         paddingHorizontal: 24,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
       }}>
       {newTaste.map((item) => {
         return (
@@ -82,7 +83,7 @@ const Popular = () => {
       style={{
         paddingTop: 8,
         paddingHorizontal: 24,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
       }}>
       {popular.map((item) => {
         return (
@@ -113,7 +114,7 @@ const Recommended = () => {
       style={{
         paddingTop: 8,
         paddingHorizontal: 24,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
       }}>
       {recommended.map((item) => {
         return (

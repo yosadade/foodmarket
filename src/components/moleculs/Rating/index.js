@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ICStarOn, ICStarOff} from '../../../assets';
+import {colors} from '../../../utils';
 import Numbers from '../Numbers';
 
 const Rating = ({number}) => {
@@ -19,7 +20,6 @@ const Rating = ({number}) => {
     <View style={styles.container}>
       <View style={styles.starContainer}>{renderStar()}</View>
       <Numbers number={number} type="decimal" style={styles.title} />
-      {/* <Text style={styles.title}>{number}</Text> */}
     </View>
   );
 };
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Poppins-Regular',
     fontSize: 12,
-    color: '#8D92A3',
+    color: colors.grey,
     marginTop: 2,
   },
 });

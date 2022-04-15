@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Header, TextInput, Button, Gap} from '../../components';
-import {useForm} from '../../utils';
+import {colors, useForm} from '../../utils';
 import {useDispatch} from 'react-redux';
 import {signInAction} from '../../redux/action';
 
@@ -42,8 +42,8 @@ const SignIn = ({navigation}) => {
         <Gap height={12} />
         <Button
           title="Create New Account"
-          bgColor="#8D92A3"
-          color="#FFFFFF"
+          bgColor={colors.grey}
+          color={colors.white}
           onPress={onHandleSignUp}
         />
       </View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     paddingHorizontal: 24,
     paddingVertical: 26,
     marginTop: 24,

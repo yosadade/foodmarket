@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {Header, Gap, Button, TextInput} from '../../components';
-import {useForm, showMessage} from '../../utils';
+import {useForm, showMessage, colors} from '../../utils';
 import {useDispatch} from 'react-redux';
 
 const SignUp = ({navigation}) => {
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     paddingHorizontal: 24,
     paddingVertical: 26,
     marginTop: 24,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   borderPhoto: {
     borderWidth: 1,
-    borderColor: '#8D92A3',
+    borderColor: colors.grey,
     width: 110,
     height: 110,
     borderRadius: 110 / 2,
@@ -138,15 +138,15 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
     borderRadius: 90 / 2,
-    // padding: 24,
+
     alignItems: 'center',
-    backgroundColor: '#F0F0F0',
+    backgroundColor: colors.white2,
     justifyContent: 'center',
   },
   addPhoto: {
     fontSize: 14,
     fontFamily: 'Poppins-Light',
-    color: '#8D92A3',
+    color: colors.grey,
     textAlign: 'center',
   },
 });

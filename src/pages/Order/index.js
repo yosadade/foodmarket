@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {EmptyOrder, Header, OrderTabSection} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {getOrders} from '../../redux/action';
+import {colors} from '../../utils';
 
 const Order = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,6 @@ const styles = StyleSheet.create({
   tabContainer: {
     flex: 1,
     marginTop: 24,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILSuccessSignUp} from '../../assets';
 import {Button} from '../../components';
+import {colors} from '../../utils';
 
 const SuccessSignUp = ({navigation}) => {
   const onHandleButton = () => {
@@ -27,19 +28,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.white,
   },
   title: {
     fontSize: 20,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
     marginTop: 30,
     marginBottom: 6,
   },
   subTitle: {
     fontSize: 14,
     fontFamily: 'Poppins-Light',
-    color: '#8D92A3',
+    color: colors.grey,
   },
   btnContainer: {
     width: '100%',

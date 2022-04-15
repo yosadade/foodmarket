@@ -10,7 +10,7 @@ import {
   Button,
   Loading,
 } from '../../components';
-import {getData, showMessage} from '../../utils';
+import {colors, getData, showMessage} from '../../utils';
 import {API_HOST} from '../../config';
 
 const OrderSummary = ({navigation, route}) => {
@@ -100,7 +100,7 @@ const OrderSummary = ({navigation, route}) => {
           <ItemValue
             label="Total Price"
             value={transaction.total}
-            valueColor="#1ABC9C"
+            valueColor={colors.green}
             type="currency"
           />
         </View>
@@ -133,10 +133,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 8,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
   content: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     paddingHorizontal: 24,
     paddingVertical: 16,
     marginTop: 24,

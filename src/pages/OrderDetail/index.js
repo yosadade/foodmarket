@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {Header, ItemListFood, ItemValue, Button} from '../../components';
 import Axios from 'axios';
-import {getData, showMessage} from '../../utils';
+import {colors, getData, showMessage} from '../../utils';
 
 const OrderDetail = ({navigation, route}) => {
   const order = route.params;
@@ -65,7 +65,7 @@ const OrderDetail = ({navigation, route}) => {
           <ItemValue
             label="Total Price"
             value={order.total}
-            valueColor="#1ABC9C"
+            valueColor={colors.green}
             type="currency"
           />
         </View>
@@ -82,7 +82,9 @@ const OrderDetail = ({navigation, route}) => {
           <ItemValue
             label={`#${order.id}`}
             value={order.status}
-            valueColor={order.status === 'CANCELLED' ? '#D9435E' : '#1ABC9C'}
+            valueColor={
+              order.status === 'CANCELLED' ? colors.red : colors.green
+            }
           />
         </View>
         <View style={styles.button}>
@@ -90,8 +92,8 @@ const OrderDetail = ({navigation, route}) => {
             <Button
               title="Cancel My Order"
               onPress={onCancel}
-              bgColor="#D9435E"
-              color="#FFFFFF"
+              bgColor={colors.red}
+              color={colors.white}
             />
           )}
         </View>
@@ -110,10 +112,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 8,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
   content: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     paddingHorizontal: 24,
     paddingVertical: 16,
     marginTop: 24,

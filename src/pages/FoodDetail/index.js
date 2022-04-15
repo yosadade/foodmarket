@@ -8,18 +8,11 @@ import {
 } from 'react-native';
 import {ICBackWhite} from '../../assets';
 import {Rating, Button, Counter, Numbers} from '../../components';
-import {getData} from '../../utils';
+import {colors, getData} from '../../utils';
 
 const FoodDetail = ({navigation, route}) => {
-  const {
-    name,
-    picturePath,
-    description,
-    ingredients,
-    rate,
-    price,
-    id,
-  } = route.params;
+  const {name, picturePath, description, ingredients, rate, price, id} =
+    route.params;
   const [totalItem, setTotalItem] = useState(1);
   const [userProfile, setUserProfile] = useState({});
 
@@ -122,7 +115,7 @@ const styles = StyleSheet.create({
     marginTop: -40,
     paddingTop: 26,
     paddingHorizontal: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     flex: 1,
   },
   mainContent: {
@@ -137,19 +130,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
     marginBottom: 6,
   },
   desc: {
     fontSize: 14,
     fontFamily: 'Poppins-Regular',
-    color: '#8D92A3',
+    color: colors.grey,
     marginBottom: 16,
   },
   label: {
     fontSize: 14,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
     marginBottom: 4,
   },
   footer: {
@@ -163,11 +156,11 @@ const styles = StyleSheet.create({
   labelPrice: {
     fontSize: 13,
     fontFamily: 'Poppins-Regular',
-    color: '#8D92A3',
+    color: colors.grey,
   },
   priceTotal: {
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
   button: {
     width: 163,
@@ -176,6 +169,6 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 18,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
 });

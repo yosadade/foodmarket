@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ILSuccessOrder} from '../../assets';
 import {Button, Gap} from '../../components';
+import {colors} from '../../utils';
 
 const SuccessOrder = ({navigation}) => {
   const onHandleOtherFoods = () => {
@@ -21,7 +22,7 @@ const SuccessOrder = ({navigation}) => {
       <View style={styles.btnContainer}>
         <Button
           title="Order Other Foods"
-          color="#020202"
+          color={colors.black}
           onPress={onHandleOtherFoods}
         />
       </View>
@@ -29,8 +30,8 @@ const SuccessOrder = ({navigation}) => {
       <View style={styles.btnContainer}>
         <Button
           title="View My Order"
-          bgColor="#8D92A3"
-          color="#FFFFFF"
+          bgColor={colors.grey}
+          color={colors.white}
           onPress={onHandleMyOrder}
         />
       </View>
@@ -45,18 +46,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
   },
   title: {
     fontSize: 20,
     marginTop: 30,
     fontFamily: 'Poppins-Regular',
-    color: '#020202',
+    color: colors.black,
   },
   subTitle: {
     fontSize: 14,
     fontFamily: 'Poppins-Light',
-    color: '#8D92A3',
+    color: colors.grey,
   },
   btnContainer: {
     width: '100%',

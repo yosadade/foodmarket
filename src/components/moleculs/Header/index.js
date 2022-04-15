@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {ICBack} from '../../../assets';
+import {colors} from '../../../utils';
 
 const Header = ({title, subTitle, navigation, onBack}) => {
   return (
@@ -25,7 +26,7 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: 24,
@@ -40,11 +41,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontFamily: 'Poppins-Medium',
-    color: '#020202',
+    color: colors.black,
   },
   subTitle: {
     fontSize: 14,
     fontFamily: 'Poppins-Medium',
-    color: '#8D92A3',
+    color: colors.grey,
   },
 });
