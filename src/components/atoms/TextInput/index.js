@@ -8,7 +8,9 @@ const TextInput = ({label, placeholder, ...restProps}) => {
       <Text style={styles.label}>{label}</Text>
       <TextInputRN
         {...restProps}
+        autoCapitalize="none"
         placeholder={placeholder}
+        // eslint-disable-next-line react-native/no-inline-styles
         style={{
           borderWidth: 1,
           borderColor: '#020202',

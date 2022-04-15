@@ -5,12 +5,18 @@ import Router from './router';
 import {Provider, useSelector} from 'react-redux';
 import store from './redux/store';
 import {Loading} from './components';
+import {StatusBar} from 'react-native';
 
 const MainApp = () => {
   const {isLoading} = useSelector((state) => state.globalReducer);
   useEffect(() => {}, []);
   return (
     <NavigationContainer>
+      <StatusBar
+        animated={true}
+        backgroundColor="#FFFFFF"
+        barStyle="dark-content"
+      />
       <Router />
       <FlashMessage position="top" />
       {isLoading && <Loading />}
