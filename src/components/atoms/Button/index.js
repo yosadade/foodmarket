@@ -2,11 +2,21 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {colors} from '../../../utils';
 
-const Button = ({bgColor = colors.yellow2, color, title, onPress}) => {
+const Button = ({type, bgColor = colors.yellow2, color, title, onPress}) => {
+  if (type === 'modal') {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.container(bgColor, type)}
+        onPress={onPress}>
+        <Text style={styles.title(color)}>{title}</Text>
+      </TouchableOpacity>
+    );
+  }
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      style={styles.container(bgColor)}
+      style={styles.container(bgColor, type)}
       onPress={onPress}>
       <Text style={styles.title(color)}>{title}</Text>
     </TouchableOpacity>
@@ -16,10 +26,11 @@ const Button = ({bgColor = colors.yellow2, color, title, onPress}) => {
 export default Button;
 
 const styles = StyleSheet.create({
-  container: (bgColor) => ({
+  container: (bgColor, type) => ({
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingVertical: type === 'modal' ? 8 : 12,
+    paddingHorizontal: type === 'modal' ? 8 : 0,
     backgroundColor: bgColor,
     borderRadius: 8,
   }),

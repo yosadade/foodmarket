@@ -1,11 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {Text, View, Dimensions} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListMenu} from '..';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {colors} from '../../../utils';
+import {CustomModal} from '../..';
+import {ICSignOut} from '../../../assets';
 
 const renderTabBar = (props) => (
   <TabBar
@@ -39,25 +41,42 @@ const renderTabBar = (props) => (
 );
 
 const Account = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const navigation = useNavigation();
+  const showModal = () => {
+    setIsVisible(!isVisible);
+  };
   const signOut = () => {
+    setIsVisible(false);
     AsyncStorage.multiRemove(['userProfile', 'token']).then(() => {
       navigation.reset({index: 0, routes: [{name: 'SignIn'}]});
     });
   };
   return (
-    <View
-      style={{
-        paddingTop: 8,
-        paddingHorizontal: 24,
-        backgroundColor: colors.white,
-      }}>
-      <ItemListMenu label="Edit Profile" />
-      <ItemListMenu label="Home Address" />
-      <ItemListMenu label="Security" />
-      <ItemListMenu label="Payments" />
-      <ItemListMenu label="Sign Out" onPress={signOut} />
-    </View>
+    <>
+      <View
+        style={{
+          paddingTop: 8,
+          paddingHorizontal: 24,
+          backgroundColor: colors.white,
+        }}>
+        <ItemListMenu label="Edit Profile" />
+        <ItemListMenu label="Home Address" />
+        <ItemListMenu label="Security" />
+        <ItemListMenu label="Payments" />
+        <ItemListMenu label="Sign Out" onPress={showModal} />
+      </View>
+      {isVisible && (
+        <CustomModal
+          isVisible={isVisible}
+          icon={<ICSignOut />}
+          label="Sign Out"
+          title="Are you sure you want to exit the app?"
+          onBackdropPress={() => setIsVisible(!isVisible)}
+          onSubmit={signOut}
+        />
+      )}
+    </>
   );
 };
 
@@ -102,5 +121,3 @@ const ProfileTabSection = () => {
 };
 
 export default ProfileTabSection;
-
-const styles = StyleSheet.create({});
