@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "17759766592",
+    "project_id": "foodmarket-afe6b",
+    "storage_bucket": "foodmarket-afe6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17759766592:android:8266db49867dbc114377a5",
+        "android_client_info": {
+          "package_name": "com.foodmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17759766592-3679q5ugec0elhib6iat2a56jfc0vscg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJpHw8QNcIv0bfuUrDndZaIfLCbLCuxAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17759766592-3679q5ugec0elhib6iat2a56jfc0vscg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
