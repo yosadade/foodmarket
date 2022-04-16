@@ -37,15 +37,15 @@ const CustomModal = ({
             <Button
               type="modal"
               title="Cancel"
-              bgColor={colors.white}
-              color={colors.grey}
+              bgColor={colors.green}
+              color={colors.white}
               onPress={onBackdropPress}
             />
             <Gap width={4} />
             <Button
               type="modal"
               title="Submit"
-              bgColor={colors.green}
+              bgColor={colors.red}
               color={colors.white}
               onPress={onSubmit}
             />
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 'auto',
+
     padding: 12,
     borderWidth: 0.5,
     borderTopColor: '#DEE2E6',
