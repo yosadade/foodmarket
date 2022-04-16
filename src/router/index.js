@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
@@ -94,5 +93,3 @@ const Router = () => {
 };
 
 export default Router;
-
-const styles = StyleSheet.create({});

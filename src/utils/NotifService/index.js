@@ -67,7 +67,7 @@ export default class NotifService {
       console.log('InitialNotication:', notification),
     );
   }
-  localNotif(soundName, profile) {
+  localNotif(soundName, title, message, iconUrl) {
     this.lastId++;
     PushNotification.localNotification({
       channelId: soundName ? 'sound-channel-id' : 'default-channel-id',
@@ -84,35 +84,34 @@ export default class NotifService {
       group: 'group',
       groupSummary: false,
       ongoing: false,
-      // actions: ['Yes', 'No'], // (Android only) See the doc for notification actions to know more
       invokeApp: true,
       when: null,
       usesChronometer: false,
       timeoutAfter: null,
       id: this.lastId,
-      title: `Selamat datang ${profile}`,
-      message: 'Diskon 20% untuk pengguna baru!',
+      title: title,
+      message: message,
       userInfo: {screen: 'home'},
       playSound: !!soundName,
       soundName: soundName ? soundName : 'default',
       number: 10,
-      largeIconUrl: 'https://source.unsplash.com/random/1024x500',
-      bigLargeIconUrl: 'https://source.unsplash.com/random/1024x500',
-      bigPictureUrl: 'https://source.unsplash.com/random/1024x500',
+      largeIconUrl: iconUrl,
+      bigLargeIconUrl: iconUrl,
+      bigPictureUrl: iconUrl,
     });
   }
-  scheduleNotif(soundName) {
+  scheduleNotif(date, soundName, title, message) {
     this.lastId++;
     PushNotification.localNotificationSchedule({
-      date: new Date(Date.now() + 30 * 1000),
+      date: new Date(Date.now() + date * 1000),
       channelId: soundName ? 'sound-channel-id' : 'default-channel-id',
       ticker: 'My Notification Ticker',
       autoCancel: true,
       largeIcon: 'ic_launcher',
       smallIcon: 'ic_notification',
-      bigText: 'My big text that will be shown when notification is expanded',
-      subText: 'This is a subText',
-      color: 'blue',
+      bigText: message,
+      subText: `${moment(Date.now()).startOf('hour').fromNow()}`,
+      color: colors.black,
       vibrate: true,
       vibration: 300,
       tag: 'some_tag',
@@ -125,8 +124,8 @@ export default class NotifService {
       usesChronometer: false,
       timeoutAfter: null,
       id: this.lastId,
-      title: 'Scheduled Notification',
-      message: 'My Notification Message',
+      title: title,
+      message: message,
       userInfo: {sceen: 'home'},
       playSound: !!soundName,
       soundName: soundName ? soundName : 'default',

@@ -11,8 +11,13 @@ const Home = ({navigation}) => {
 
   const dispatch = useDispatch();
   const {food} = useSelector((state) => state.homeReducer);
+
   useEffect(() => {
     dispatch(getFoodData());
+    getDataProfile();
+  }, [dispatch]);
+
+  const getDataProfile = () => {
     getData('userProfile')
       .then((res) => {
         setPhoto({uri: res.profile_photo_url});
@@ -20,7 +25,8 @@ const Home = ({navigation}) => {
       .catch((err) => {
         showMessage(err?.response?.message || 'Terjadi Kesalahan');
       });
-  }, [dispatch]);
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
