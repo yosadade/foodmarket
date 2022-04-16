@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {ICBack} from '../../../assets';
 import {colors} from '../../../utils';
 
-const Header = ({title, subTitle, navigation, onBack}) => {
+const Header = ({title, subTitle, onBack}) => {
   return (
     <View style={styles.container}>
       {onBack && (
