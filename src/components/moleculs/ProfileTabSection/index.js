@@ -64,9 +64,9 @@ const Account = () => {
         <ItemListMenu label="Home Address" />
         <ItemListMenu label="Security" />
         <ItemListMenu label="Payments" />
-        <ItemListMenu label="Sign Out" onPress={showModal} />
+        <ItemListMenu label="Sign Out" onPress={signOut} />
       </View>
-      {isVisible && (
+      {/* {isVisible && (
         <CustomModal
           isVisible={isVisible}
           icon={<ICSignOut />}
@@ -75,7 +75,7 @@ const Account = () => {
           onBackdropPress={() => setIsVisible(!isVisible)}
           onSubmit={signOut}
         />
-      )}
+      )} */}
     </>
   );
 };

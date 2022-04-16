@@ -28,13 +28,6 @@ export const getPastOrders = () => (dispatch) => {
   });
 };
 
-// 16258782510
-
-// 9881625821354435
-
-// 70012
-// 945069446257
-
 export const getInProgress = () => (dispatch) => {
   getData('token').then((resToken) => {
     Axios.all([

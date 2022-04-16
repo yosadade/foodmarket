@@ -2,6 +2,8 @@ const initialGlobalState = {
   isError: false,
   isLoading: false,
   message: 'error',
+  registerToken: '',
+  fcmRegistered: '',
 };
 
 export const globalReducer = (state = initialGlobalState, action) => {
@@ -16,6 +18,18 @@ export const globalReducer = (state = initialGlobalState, action) => {
     return {
       ...state,
       isLoading: action.value,
+    };
+  }
+  if (action.type === 'SET_REG_TOKEN') {
+    return {
+      ...state,
+      registerToken: action.value,
+    };
+  }
+  if (action.type === 'SET_REG_FCM') {
+    return {
+      ...state,
+      fcmRegistered: action.value,
     };
   }
   return state;

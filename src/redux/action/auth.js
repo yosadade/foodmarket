@@ -1,7 +1,8 @@
 import Axios from 'axios';
-import {showMessage, storeData} from '../../utils';
+import {getData, NotifService, showMessage, storeData} from '../../utils';
 import {setLoading} from './global';
 import {API_HOST} from '../../config';
+import {setRegFcm, setRegToken} from '.';
 
 export const signUpAction =
   (dataRegister, photoReducer, navigation) => (dispatch) => {
@@ -9,6 +10,14 @@ export const signUpAction =
       .then((res) => {
         const profile = res.data.data.user;
         const token = `${res.data.data.token_type} ${res.data.data.access_token}`;
+
+        const onRegister = (tokens) => {
+          dispatch(setRegToken(tokens.token));
+
+          dispatch(setRegFcm(true));
+        };
+
+        const notif = new NotifService(onRegister, () => {});
 
         storeData('token', {
           value: token,
@@ -36,6 +45,9 @@ export const signUpAction =
           navigation.reset({index: 0, routes: [{name: 'SuccessSignUp'}]});
         }
         dispatch(setLoading(false));
+        getData('userProfile').then((ress) => {
+          notif.localNotif('sample.mp3', ress.name);
+        });
       })
       .catch((err) => {
         dispatch(setLoading(false));

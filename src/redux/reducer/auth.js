@@ -3,10 +3,6 @@ const initialStateRegister = {
   email: '',
   password: '',
   password_confirmation: '',
-  //   address: '',
-  //   city: '',
-  //   houseNumber: '',
-  //   phoneNumber: '',
 };
 
 const initialStatePhoto = {
